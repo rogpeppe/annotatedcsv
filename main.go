@@ -21,7 +21,7 @@ type column struct {
 	Index   int         `json:"index"`
 	Name    string      `json:"name"`
 	Group   bool        `json:"group,omitempty"`
-	Default interface{} `json:",omitempty"`
+	Default interface{} `json:"default,omitempty"`
 	Type    string      `json:"type,omitempty"`
 }
 
