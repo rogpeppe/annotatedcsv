@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -181,7 +182,14 @@ func convertToType(s string, typ string) (interface{}, error) {
 	case "unsignedLong":
 		return strconv.ParseUint(s, 10, 64)
 	case "double":
-		return strconv.ParseFloat(s, 64)
+		x, err := strconv.ParseFloat(s, 64)
+		if err != nil {
+			return nil, err
+		}
+		if math.IsInf(x, 0) || math.IsNaN(x) {
+			return s, nil
+		}
+		return x, nil
 	case "string", "tag", "":
 		return s, nil
 	}
