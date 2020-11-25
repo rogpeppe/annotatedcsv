@@ -1,3 +1,3 @@
-module github.com/rogpeppe/csv2json
+module github.com/rogpeppe/annotatedcsv
 
 go 1.16
